@@ -1,0 +1,18 @@
+
+# SeriesActorsData
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **Integer** |  |  [optional]
+**image** | **String** |  |  [optional]
+**imageAdded** | **String** |  |  [optional]
+**imageAuthor** | **Integer** |  |  [optional]
+**lastUpdated** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
+**role** | **String** |  |  [optional]
+**seriesId** | **String** |  |  [optional]
+**sortOrder** | **Integer** |  |  [optional]
+
+
+
