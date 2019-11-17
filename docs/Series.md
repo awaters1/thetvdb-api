@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **seriesName** | **String** |  |  [optional]
 **siteRating** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **siteRatingCount** | **Integer** |  |  [optional]
+**slug** | **String** |  |  [optional]
 **status** | **String** |  |  [optional]
 **zap2itId** | **String** |  |  [optional]
 

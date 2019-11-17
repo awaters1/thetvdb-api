@@ -4,7 +4,15 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List&lt;SeriesSearchData&gt;**](SeriesSearchData.md) |  |  [optional]
+**aliases** | **List&lt;String&gt;** |  |  [optional]
+**banner** | **String** |  |  [optional]
+**firstAired** | **String** |  |  [optional]
+**id** | **Integer** |  |  [optional]
+**network** | **String** |  |  [optional]
+**overview** | **String** |  |  [optional]
+**seriesName** | **String** |  |  [optional]
+**slug** | **String** |  |  [optional]
+**status** | **String** |  |  [optional]
 
 
 

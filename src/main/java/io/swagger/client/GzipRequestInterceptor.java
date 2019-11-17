@@ -11,94 +11,71 @@
  */
 
 
-package io.swagger.client.model;
+package io.swagger.client;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.squareup.okhttp.*;
+import okio.Buffer;
+import okio.BufferedSink;
+import okio.GzipSink;
+import okio.Okio;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * FilterKeys
+ * Encodes request bodies using gzip.
+ *
+ * Taken from https://github.com/square/okhttp/issues/350
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-17T13:20:58.565Z")
-public class FilterKeys {
-  @SerializedName("data")
-  private List<String> data = null;
+class GzipRequestInterceptor implements Interceptor {
+    @Override public Response intercept(Chain chain) throws IOException {
+        Request originalRequest = chain.request();
+        if (originalRequest.body() == null || originalRequest.header("Content-Encoding") != null) {
+            return chain.proceed(originalRequest);
+        }
 
-  public FilterKeys data(List<String> data) {
-    this.data = data;
-    return this;
-  }
-
-  public FilterKeys addDataItem(String dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<String>();
+        Request compressedRequest = originalRequest.newBuilder()
+                                                   .header("Content-Encoding", "gzip")
+                                                   .method(originalRequest.method(), forceContentLength(gzip(originalRequest.body())))
+                                                   .build();
+        return chain.proceed(compressedRequest);
     }
-    this.data.add(dataItem);
-    return this;
-  }
 
-   /**
-   * Get data
-   * @return data
-  **/
-  @ApiModelProperty(value = "")
-  public List<String> getData() {
-    return data;
-  }
+    private RequestBody forceContentLength(final RequestBody requestBody) throws IOException {
+        final Buffer buffer = new Buffer();
+        requestBody.writeTo(buffer);
+        return new RequestBody() {
+            @Override
+            public MediaType contentType() {
+                return requestBody.contentType();
+            }
 
-  public void setData(List<String> data) {
-    this.data = data;
-  }
+            @Override
+            public long contentLength() {
+                return buffer.size();
+            }
 
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+            @Override
+            public void writeTo(BufferedSink sink) throws IOException {
+                sink.write(buffer.snapshot());
+            }
+        };
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    private RequestBody gzip(final RequestBody body) {
+        return new RequestBody() {
+            @Override public MediaType contentType() {
+                return body.contentType();
+            }
+
+            @Override public long contentLength() {
+                return -1; // We don't know the compressed length in advance!
+            }
+
+            @Override public void writeTo(BufferedSink sink) throws IOException {
+                BufferedSink gzipSink = Okio.buffer(new GzipSink(sink));
+                body.writeTo(gzipSink);
+                gzipSink.close();
+            }
+        };
     }
-    FilterKeys filterKeys = (FilterKeys) o;
-    return Objects.equals(this.data, filterKeys.data);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(data);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class FilterKeys {\n");
-    
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 }
-

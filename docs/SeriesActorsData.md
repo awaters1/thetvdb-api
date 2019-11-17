@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **lastUpdated** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 **role** | **String** |  |  [optional]
-**seriesId** | **String** |  |  [optional]
+**seriesId** | **Integer** |  |  [optional]
 **sortOrder** | **Integer** |  |  [optional]
 
 

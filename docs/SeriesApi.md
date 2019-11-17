@@ -1,6 +1,6 @@
 # SeriesApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 
 
-This route allows the user to query against episodes for the given series. The response is a paginated array of episode records that have been filtered down to basic information.
+This route allows the user to query against episodes for the given series. The response is a paginated array of episode records.
 
 ### Example
 ```java

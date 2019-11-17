@@ -22,26 +22,27 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.SeriesSearchResult;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FilterKeys
+ * SeriesSearchResults
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-17T13:20:58.565Z")
-public class FilterKeys {
+public class SeriesSearchResults {
   @SerializedName("data")
-  private List<String> data = null;
+  private List<SeriesSearchResult> data = null;
 
-  public FilterKeys data(List<String> data) {
+  public SeriesSearchResults data(List<SeriesSearchResult> data) {
     this.data = data;
     return this;
   }
 
-  public FilterKeys addDataItem(String dataItem) {
+  public SeriesSearchResults addDataItem(SeriesSearchResult dataItem) {
     if (this.data == null) {
-      this.data = new ArrayList<String>();
+      this.data = new ArrayList<SeriesSearchResult>();
     }
     this.data.add(dataItem);
     return this;
@@ -52,11 +53,11 @@ public class FilterKeys {
    * @return data
   **/
   @ApiModelProperty(value = "")
-  public List<String> getData() {
+  public List<SeriesSearchResult> getData() {
     return data;
   }
 
-  public void setData(List<String> data) {
+  public void setData(List<SeriesSearchResult> data) {
     this.data = data;
   }
 
@@ -69,8 +70,8 @@ public class FilterKeys {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FilterKeys filterKeys = (FilterKeys) o;
-    return Objects.equals(this.data, filterKeys.data);
+    SeriesSearchResults seriesSearchResults = (SeriesSearchResults) o;
+    return Objects.equals(this.data, seriesSearchResults.data);
   }
 
   @Override
@@ -82,7 +83,7 @@ public class FilterKeys {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FilterKeys {\n");
+    sb.append("class SeriesSearchResults {\n");
     
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

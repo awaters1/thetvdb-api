@@ -23,41 +23,52 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * FilterKeys
+ * EpisodeLanguageInfo
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-17T13:20:58.565Z")
-public class FilterKeys {
-  @SerializedName("data")
-  private List<String> data = null;
+public class EpisodeLanguageInfo {
+  @SerializedName("episodeName")
+  private String episodeName = null;
 
-  public FilterKeys data(List<String> data) {
-    this.data = data;
-    return this;
-  }
+  @SerializedName("overview")
+  private String overview = null;
 
-  public FilterKeys addDataItem(String dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<String>();
-    }
-    this.data.add(dataItem);
+  public EpisodeLanguageInfo episodeName(String episodeName) {
+    this.episodeName = episodeName;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get episodeName
+   * @return episodeName
   **/
   @ApiModelProperty(value = "")
-  public List<String> getData() {
-    return data;
+  public String getEpisodeName() {
+    return episodeName;
   }
 
-  public void setData(List<String> data) {
-    this.data = data;
+  public void setEpisodeName(String episodeName) {
+    this.episodeName = episodeName;
+  }
+
+  public EpisodeLanguageInfo overview(String overview) {
+    this.overview = overview;
+    return this;
+  }
+
+   /**
+   * Get overview
+   * @return overview
+  **/
+  @ApiModelProperty(value = "")
+  public String getOverview() {
+    return overview;
+  }
+
+  public void setOverview(String overview) {
+    this.overview = overview;
   }
 
 
@@ -69,22 +80,24 @@ public class FilterKeys {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FilterKeys filterKeys = (FilterKeys) o;
-    return Objects.equals(this.data, filterKeys.data);
+    EpisodeLanguageInfo episodeLanguageInfo = (EpisodeLanguageInfo) o;
+    return Objects.equals(this.episodeName, episodeLanguageInfo.episodeName) &&
+        Objects.equals(this.overview, episodeLanguageInfo.overview);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data);
+    return Objects.hash(episodeName, overview);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FilterKeys {\n");
+    sb.append("class EpisodeLanguageInfo {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    episodeName: ").append(toIndentedString(episodeName)).append("\n");
+    sb.append("    overview: ").append(toIndentedString(overview)).append("\n");
     sb.append("}");
     return sb.toString();
   }

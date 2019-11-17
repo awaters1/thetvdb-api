@@ -1,6 +1,6 @@
 # SearchApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="searchSeriesGet"></a>
 # **searchSeriesGet**
-> SeriesSearchResult searchSeriesGet(name, imdbId, zap2itId, acceptLanguage)
+> SeriesSearchResults searchSeriesGet(name, imdbId, zap2itId, slug, acceptLanguage)
 
 
 
@@ -37,9 +37,10 @@ SearchApi apiInstance = new SearchApi();
 String name = "name_example"; // String | Name of the series to search for.
 String imdbId = "imdbId_example"; // String | IMDB id of the series
 String zap2itId = "zap2itId_example"; // String | Zap2it ID of the series to search for.
+String slug = "slug_example"; // String | Slug from site URL of series (https://www.thetvdb.com/series/$SLUG)
 String acceptLanguage = "acceptLanguage_example"; // String | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields.
 try {
-    SeriesSearchResult result = apiInstance.searchSeriesGet(name, imdbId, zap2itId, acceptLanguage);
+    SeriesSearchResults result = apiInstance.searchSeriesGet(name, imdbId, zap2itId, slug, acceptLanguage);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchSeriesGet");
@@ -54,11 +55,12 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the series to search for. | [optional]
  **imdbId** | **String**| IMDB id of the series | [optional]
  **zap2itId** | **String**| Zap2it ID of the series to search for. | [optional]
+ **slug** | **String**| Slug from site URL of series (https://www.thetvdb.com/series/$SLUG) | [optional]
  **acceptLanguage** | **String**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional]
 
 ### Return type
 
-[**SeriesSearchResult**](SeriesSearchResult.md)
+[**SeriesSearchResults**](SeriesSearchResults.md)
 
 ### Authorization
 
